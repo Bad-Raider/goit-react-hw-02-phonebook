@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Container from "./Container/container";
 import Form from "./Form/form";
 import Contacts from "./Contacts/contacts";
 import Filter from "./Filter/filter";
@@ -46,7 +47,7 @@ class App extends Component {
     const arrContacts = this.getVisibleContacts();
 
     return (
-      <>
+      <Container>
         <h2>Phonebook</h2>
         <Form
           submit={this.addNewContacts}
@@ -61,7 +62,7 @@ class App extends Component {
           arrContacts={arrContacts}
           onDeleteContact={this.onDeleteContact}
         />
-      </>
+      </Container>
     );
   }
 }

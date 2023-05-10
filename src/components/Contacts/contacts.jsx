@@ -1,11 +1,11 @@
 import ContactsItem from "./ContactsItem/contactsItem";
-// import css from './contacts.module.css';
+import css from './contacts.module.css';
 
 
 const Contacts = ({ arrContacts, onDeleteContact }) => {
     return (
         <>
-            <ul>
+            <ul className={css.list}>
                 <ContactsItem
                     arrContacts={arrContacts}
                     onDeleteContact={onDeleteContact}
