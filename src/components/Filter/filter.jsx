@@ -1,12 +1,13 @@
 // import React, { Component } from "react";
 // import css from './filter.module.css';
 
-const Filter = (input, onChange) => {
+const Filter = ({value, onChange}) => {
   return (
-            <>
+      <>
+          <p>Find contacts by name</p>
           <input
               type="text"
-              value={input}
+              value={value}
               onChange={onChange}
           />
             </>

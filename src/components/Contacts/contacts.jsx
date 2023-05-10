@@ -1,22 +1,19 @@
-import Filter from "components/Filter/filter";
+import ContactsItem from "./ContactsItem/contactsItem";
 // import css from './contacts.module.css';
 
-const Contacts = ({ state, input, onChange }) => {
+
+const Contacts = ({ arrContacts, onDeleteContact }) => {
     return (
         <>
-            <h2>Contacts</h2>
-            <Filter
-                input={input}
-                onChange={onChange}
-            />
             <ul>
-                {state.map(({ id,name,number}) => (
-                    
-                    <li key={id}>{name}: { number}</li>
-                ))}
+                <ContactsItem
+                    arrContacts={arrContacts}
+                    onDeleteContact={onDeleteContact}
+                />
             </ul>
         </>
     );
 };
 
 export default Contacts;
+

@@ -1,29 +1,31 @@
-import css from './form.module.css';
 import { nanoid } from "nanoid";
+import css from './form.module.css';
 
-const Form = ({onSubmit}) => {
-    
+const Form = ({submit, contacts}) => {
+
 
     const handleSubmit = evt => {
         evt.preventDefault()
         const form = evt.currentTarget;
 
-        onSubmit({
-            id: nanoid(),
-            name: form.elements.name.value,
-            number: form.elements.number.value,
-        })
-        console.log(`я оновив cтейт`)
+        (contacts.find(contact =>
+            contact.name.toLowerCase() === form.elements.name.value.toLowerCase()
+        ))
+            ? alert(`${form.elements.name.value} is already in contacts.`)
+            : submit({
+                id: nanoid(),
+                name: form.elements.name.value,
+                number: form.elements.number.value,
+            });
     };
 
 
     return (
         <>
-            <h1>Phonebook</h1>
             <form
                 onSubmit={handleSubmit}
                 className={css.form}>
-                <label > Name
+                <label > Name:
                     <input
                         type="text"
                         name="name"
@@ -32,7 +34,7 @@ const Form = ({onSubmit}) => {
                         required
                     />
                 </label>
-                <label > Number
+                <label > Number:
                     <input
                         type="tel"
                         name="number"

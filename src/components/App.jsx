@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import Form from "./Form/form";
 import Contacts from "./Contacts/contacts";
-// import { object } from "prop-types";
-
+import Filter from "./Filter/filter";
 
 class App extends Component {
     
@@ -14,42 +13,56 @@ class App extends Component {
     {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
   ],
   filter: '',
-  name: '',
-  number: ''
 }
   
   addNewContacts = newContact => {
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
     }));
-    console.log(this.state)
   };
 
   handleChange = evt => {
-    this.setState({ filter: evt.target.value });
+    this.setState({ filter: evt.currentTarget.value });
   };
 
-  // render() {
-  //   const { inputValue } = this.state;
-  //   return (
-  //     <input type="text" value={inputValue} onChange={this.handleChange} />
-  //   );
-  // }
+  getVisibleContacts = () => {
+    const { contacts, filter } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter),
+    );
+  };
+
+  onDeleteContact = id => {
+    this.setState(({ contacts }) => ({
+      contacts: contacts.filter(contact => contact.id !== id),
+    }));
+  }
   
 
-
   render() {
-    const { filter } = this.state;
+    const { filter, contacts } = this.state;
+    const arrContacts = this.getVisibleContacts();
+
     return (
       <>
-        <Form onSubmit={this.addNewContacts} />
-        <Contacts
-          state={this.state.contacts}
-          input={filter}
+        <h2>Phonebook</h2>
+        <Form
+          submit={this.addNewContacts}
+          contacts={contacts}
+        />
+        <h2>Contacts</h2>
+        <Filter
+          value={filter}
           onChange={this.handleChange}
         />
+        <Contacts
+          arrContacts={arrContacts}
+          onDeleteContact={this.onDeleteContact}
+        />
       </>
-    )
+    );
   }
 }
 
