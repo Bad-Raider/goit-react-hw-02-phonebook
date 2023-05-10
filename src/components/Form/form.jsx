@@ -17,6 +17,7 @@ const Form = ({submit, contacts}) => {
                 name: form.elements.name.value,
                 number: form.elements.number.value,
             });
+        form.reset();
     };
 
 
