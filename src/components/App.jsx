@@ -1,5 +1,5 @@
 import { Component } from "react";
-import Container from "./Container/Container";
+import Container from "./Container/MainContainer";
 import ContactForm from "./ContactForm/ContactForm";
 import ContactList from "./Contacts/ContactList/ContactList";
 import ContactFilter from "./ContactFilter/ContactFilter";
