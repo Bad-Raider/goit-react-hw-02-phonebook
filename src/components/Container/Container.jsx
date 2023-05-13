@@ -1,4 +1,4 @@
-import css from './MainContainer.module.css';
+import css from './Container.module.css';
 
 const Container = ({ children }) => {
     return (
