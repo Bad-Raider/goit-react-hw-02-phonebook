@@ -1,10 +1,11 @@
-import React, { Component } from "react";
-import Container from "./Container/container";
-import Form from "./Form/form";
-import Contacts from "./Contacts/contacts";
-import Filter from "./Filter/filter";
+import { Component } from "react";
+import Container from "./Container/Container";
+import ContactForm from "./ContactForm/ContactForm";
+import ContactList from "./Contacts/ContactList/ContactList";
+import ContactFilter from "./ContactFilter/ContactFilter";
+import { nanoid } from "nanoid";
 
-class App extends Component {
+export class App extends Component {
     
   state = {
   contacts: [
@@ -15,12 +16,30 @@ class App extends Component {
   ],
   filter: '',
 }
-  
-  addNewContacts = newContact => {
-    this.setState(prevState => ({
-      contacts: [...prevState.contacts, newContact],
-    }));
+
+  addNewContacts = contacts => {
+    const { name, number } = contacts;
+
+    const contactExists = this.state.contacts.some(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
+
+    if (contactExists) {
+      alert(`${name} is already in contacts.`);
+    } else {
+      
+      const newContact = {
+        id: nanoid(),
+        name: name,
+        number: number,
+      };
+
+      this.setState(prevState => ({
+        contacts: [...prevState.contacts, newContact],
+      }));
+    }
   };
+
 
   handleChange = evt => {
     this.setState({ filter: evt.currentTarget.value });
@@ -43,22 +62,21 @@ class App extends Component {
   
 
   render() {
-    const { filter, contacts } = this.state;
+    const { filter} = this.state;
     const arrContacts = this.getVisibleContacts();
 
     return (
       <Container>
         <h2>Phonebook</h2>
-        <Form
-          submit={this.addNewContacts}
-          contacts={contacts}
+        <ContactForm
+          onSubmit={this.addNewContacts}
         />
         <h2>Contacts</h2>
-        <Filter
+        <ContactFilter
           value={filter}
           onChange={this.handleChange}
         />
-        <Contacts
+        <ContactList
           arrContacts={arrContacts}
           onDeleteContact={this.onDeleteContact}
         />
@@ -68,4 +86,3 @@ class App extends Component {
 }
 
 export default App;
-

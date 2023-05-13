@@ -11,13 +11,18 @@
 .itemBtn{
     width: 20px;
     height: 20px;
-    margin-left: 10px;
 
     border-radius: 50px;
     border: transparent;
     background-color: rgb(220, 219, 219);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s;
 
+}
+
+.itemBtn:hover{
+    transform: scale(1.4);
+    color: #007bff;
 }
 
 .span{
@@ -25,5 +30,7 @@
 }
 
 .spanNum{
-    color: tomato;
+    color: #007bff;
+    font-style: italic;
+    font-weight: 700;
 }

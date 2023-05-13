@@ -7,6 +7,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-image: url("./img/body-fone.jpg");
+  background-size: cover; 
+  background-repeat: no-repeat; 
 }
 
 code {
@@ -15,7 +19,6 @@ code {
 }
 
 h1,
-h2,
 h3,
 h4,
 h5,
@@ -24,15 +27,14 @@ p {
   margin: 0;
 }
 
-/* ul,
-ol {
-  margin: 0;
-  padding: 0;
-  list-style: none; */
-/* } */
+
+ h2{
+    margin-top: 20px;
+ }
 
 img {
   display: block;
   max-width: 100%;
   height: auto;
 }
+
