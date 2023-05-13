@@ -59,7 +59,6 @@ export class App extends Component {
       contacts: contacts.filter(contact => contact.id !== id),
     }));
   }
-  
 
   render() {
     const { filter} = this.state;
